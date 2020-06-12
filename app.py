@@ -18,11 +18,15 @@ data = sheet.get_all_records()
 # Get 2D list of all records
 list_of_lists = sheet.get_all_values()
 
-first_names_present = ['Adityaa', 'Aditya', 'Jai']
+# TODO USE ID NUMBERS INSTEAD
+first_names_present = ['Aditya', 'Aditya', 'Jai']
 last_names_present = ['Adhikari', 'Agrawal', 'Agrawal']
 
-first_names_hours = ['Adityaa', 'Aditya', 'Jai']
+first_names_hours = ['Aditya', 'Aditya', 'Jai']
 last_names_hours = ['Adhikari', 'Agrawal', 'Agrawal']
+
+hours_list = []
+
 
 def update_attendance(first_names, last_names):
     for index, name in enumerate(first_names):
@@ -48,17 +52,31 @@ def qsort(inlist):
         return lesser + [pivot] + greater
 
 
-#
-# def set_hours():
-#
-#
+def set_hours(first_names, last_names):
+    for index, name in enumerate(first_names):
+        for list in list_of_lists:
+            if name == list[1] and last_names[index] == list[0]:
+                cell = sheet.find(name)
+                current_hours_list = get_hours(first_names_hours, last_names_hours)
+                hours_gained = input(f'Input the number of new hours for {name}: ')
+                total_hours = float(current_hours_list[index]) + float(hours_gained)
+                print('New Total:', total_hours)
+                sheet.update_cell(cell.row, 32, total_hours)
+
 
 def get_hours(first_names, last_names):
     for index, name in enumerate(first_names):
         for list in list_of_lists:
             if name == list[1] and last_names[index] == list[0]:
-                cell = sheet.find(name)
-                sheet.update_cell(cell.row, 1, "Y")
+                if list[31] == ' ':
+                    hours_list.append(list[31])
+                else:
+                    hours_list.append(0)
+    return hours_list
+
+
+print(get_hours(first_names_hours, last_names_hours))
+set_hours(first_names_hours, last_names_hours)
 
 
 # def get_least_active
