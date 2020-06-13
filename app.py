@@ -1,5 +1,8 @@
 import gspread
+import csv
+import time
 from oauth2client.service_account import ServiceAccountCredentials
+import pickle
 from pprint import pprint
 
 
@@ -18,25 +21,73 @@ data = sheet.get_all_records()
 # Get 2D list of all records
 list_of_lists = sheet.get_all_values()
 
-# TODO USE ID NUMBERS INSTEAD
-first_names_present = ['Aditya', 'Aditya', 'Jai']
-last_names_present = ['Adhikari', 'Agrawal', 'Agrawal']
+id_numbers = []
+first_names_present = []
+last_names_present = []
+first_names_hours = []
+last_names_hours = []
 
-first_names_hours = ['Aditya', 'Aditya', 'Jai']
-last_names_hours = ['Adhikari', 'Agrawal', 'Agrawal']
+# For Attendance
+
+# with open('Attendance Files/attendance_id_numbers.csv') as file:
+#     reader = csv.reader(file)
+#
+#     for index, row in enumerate(reader):
+#         if index != 0:
+#             id_numbers.append(row[0])
+#
+#     pickle_out = open('Attendance Files/id.pickle', 'wb')
+#     pickle.dump(id_numbers, pickle_out)
+#     pickle_out.close()
+
+pickle_in = open('Attendance Files/id.pickle', 'rb')
+id_numbers = pickle.load(pickle_in)
+
+
+# For Updating Hours
+
+# with open('Updating Hours Files/updating_hours_first_and_last_names.csv') as file:
+#     reader = csv.reader(file)
+#
+#     for index, row in enumerate(reader):
+#         first_names_hours.append(row[1])
+#         last_names_hours.append(row[0])
+#
+#     pickle_out = open('Updating Hours Files/updating_hours_firstname.pickle', 'wb')
+#     pickle.dump(first_names_hours, pickle_out)
+#     pickle_out.close()
+#
+#     pickle_out = open('Updating Hours Files/updating_hours_lastname.pickle', 'wb')
+#     pickle.dump(last_names_hours, pickle_out)
+#     pickle_out.close()
+
+pickle_in = open('Updating Hours Files/updating_hours_firstname.pickle', 'rb')
+first_names_hours = pickle.load(pickle_in)
+
+pickle_in = open('Updating Hours Files/updating_hours_lastname.pickle', 'rb')
+last_names_hours = pickle.load(pickle_in)
 
 hours_list = []
 
 
-def update_attendance(first_names, last_names):
-    for index, name in enumerate(first_names):
-        for list in list_of_lists:
-            if name == list[1] and last_names[index] == list[0]:
-                cell = sheet.find(name)
-                sheet.update_cell(cell.row, 13, "Y")
+def update_attendance(id_nums):
+    for index, tag in enumerate(id_nums):
+        for row in list_of_lists:
+            if tag == row[2]:
+                cell = sheet.find(tag)
+                sheet.update_cell(cell.row, 12, "Y")  # Modify 12 to other column numbers as necessary for attendance
+                time.sleep(10)
 
 
-update_attendance(first_names_present, last_names_present)
+# def update_attendance2(first_names, last_names):
+#     for index, name in enumerate(first_names):
+#         for list in list_of_lists:
+#             if name == list[1] and last_names[index] == list[0]:
+#                 cell = sheet.find(name)
+#                 sheet.update_cell(cell.row, 13, "Y")
+
+
+# update_attendance(id_numbers)
 
 
 def qsort(inlist):
@@ -75,8 +126,8 @@ def get_hours(first_names, last_names):
     return hours_list
 
 
-print(get_hours(first_names_hours, last_names_hours))
-set_hours(first_names_hours, last_names_hours)
+# print(get_hours(first_names_hours, last_names_hours))
+# set_hours(first_names_hours, last_names_hours)
 
 
 # def get_least_active
