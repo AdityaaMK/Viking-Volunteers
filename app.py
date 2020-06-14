@@ -22,10 +22,13 @@ data = sheet.get_all_records()
 list_of_lists = sheet.get_all_values()
 
 id_numbers = []
+hours_list = []
 first_names_present = []
 last_names_present = []
 first_names_hours = []
 last_names_hours = []
+first_names_events = []
+last_names_events = []
 
 # For Attendance
 
@@ -43,7 +46,6 @@ last_names_hours = []
 pickle_in = open('Attendance Files/id.pickle', 'rb')
 id_numbers = pickle.load(pickle_in)
 
-
 # For Updating Hours
 
 # with open('Updating Hours Files/updating_hours_first_and_last_names.csv') as file:
@@ -60,14 +62,33 @@ id_numbers = pickle.load(pickle_in)
 #     pickle_out = open('Updating Hours Files/updating_hours_lastname.pickle', 'wb')
 #     pickle.dump(last_names_hours, pickle_out)
 #     pickle_out.close()
+#
+# pickle_in = open('Updating Hours Files/updating_hours_firstname.pickle', 'rb')
+# first_names_hours = pickle.load(pickle_in)
+#
+# pickle_in = open('Updating Hours Files/updating_hours_lastname.pickle', 'rb')
+# last_names_hours = pickle.load(pickle_in)
 
-pickle_in = open('Updating Hours Files/updating_hours_firstname.pickle', 'rb')
-first_names_hours = pickle.load(pickle_in)
+# For Event Selection
 
-pickle_in = open('Updating Hours Files/updating_hours_lastname.pickle', 'rb')
-last_names_hours = pickle.load(pickle_in)
+# with open('Event Selection Files/selecting_events_fullnames.csv') as file:
+#     reader = csv.reader(file)
+#
+#     for index, row in enumerate(reader):
+#         first_names_events.append(row[1])
+#         last_names_events.append(row[0])
+#
+#     pickle_out = open('Event Selection Files/selecting_events_fullnames.pickle', 'wb')
+#     pickle.dump((first_names_events, last_names_events), pickle_out)
+#     pickle_out.close()
 
-hours_list = []
+with open('Event Selection Files/selecting_events_fullnames.pickle', 'rb') as file:
+    all_names = pickle.load(file)
+    first_names_events = all_names[0]
+    last_names_events = all_names[1]
+
+# for index, i in enumerate(last_names_events):
+#     print(f"{i}, {first_names_events[index]}")
 
 
 def update_attendance(id_nums):
@@ -108,41 +129,32 @@ def set_hours(first_names, last_names):
         for list in list_of_lists:
             if name == list[1] and last_names[index] == list[0]:
                 cell = sheet.find(name)
-                current_hours_list = get_hours(first_names_hours, last_names_hours)
+                current_hours_list = []
+                current_hours_list = get_hours(first_names, last_names, current_hours_list)
                 hours_gained = input(f'Input the number of new hours for {name}: ')
                 total_hours = float(current_hours_list[index]) + float(hours_gained)
                 print('New Total:', total_hours)
                 sheet.update_cell(cell.row, 30, total_hours)
 
 
-def get_hours(first_names, last_names):
+def get_hours(first_names, last_names, hours_data):
     for index, name in enumerate(first_names):
         for list in list_of_lists:
             if name == list[1] and last_names[index] == list[0]:
                 if list[29] == ' ':
-                    hours_list.append(0)
+                    hours_data.append(0)
                 else:
-                    hours_list.append(list[29])
-    return hours_list
+                    hours_data.append(list[29])
+    return hours_data
 
 
-# get_hours(first_names_hours, last_names_hours)
-# pickle_out = open('Updating Hours Files/selecting_events_hours_list.pickle', 'wb')
-# pickle.dump(hours_list, pickle_out)
-# pickle_out.close()
-
-pickle_in = open('Updating Hours Files/selecting_events_hours_list.pickle', 'rb')
-hours_list = pickle.load(pickle_in)
-hours_list = list(map(float, hours_list))
-
-
-def insertion_sort(arr, first_names, last_names):
+def insertion_sort(arr, firstnames, lastnames):
     # Traverse through 1 to len(arr)
     for i in range(1, len(arr)):
 
         key = arr[i]
-        key2 = first_names_hours[i]
-        key3 = last_names_hours[i]
+        key2 = firstnames[i]
+        key3 = lastnames[i]
 
         # Move elements of arr[0..i-1], that are
         # greater than key, to one position ahead
@@ -150,23 +162,57 @@ def insertion_sort(arr, first_names, last_names):
         j = i - 1
         while j >= 0 and key < arr[j]:
             arr[j + 1] = arr[j]
-            first_names_hours[j + 1] = first_names_hours[j]
-            last_names_hours[j + 1] = last_names_hours[j]
+            firstnames[j + 1] = firstnames[j]
+            lastnames[j + 1] = lastnames[j]
             j -= 1
         arr[j + 1] = key
-        first_names_hours[j + 1] = key2
-        last_names_hours[j + 1] = key3
+        firstnames[j + 1] = key2
+        lastnames[j + 1] = key3
 
 
 def get_least_active():
     # TODO Have to check number of hours, 0 1 or 2 events,
-    insertion_sort(hours_list, first_names_hours, last_names_hours)
+    insertion_sort(hours_list, first_names_events, last_names_events)
+
+    qualified = []
+    num_events = []
+
+    for index, name in enumerate(first_names_events):
+        for list in list_of_lists:
+            if name == list[1] and last_names_events[index] == list[0]:
+                cell = sheet.find(name)
+                if sheet.cell(cell.row, 9).value == 'Y' and sheet.cell(cell.row, 10).value == 'Y' and sheet.cell(cell.row, 9).value == 'Y':
+                    qualified.append("Qualified")
+                else:
+                    qualified.append("Not Qualified")
+                if sheet.cell(cell.row, 28).value == 'Y' and sheet.cell(cell.row, 29).value == 'Y':
+                    num_events.append(2)
+                elif sheet.cell(cell.row, 28).value == 'Y' or sheet.cell(cell.row, 29).value == 'Y':
+                    num_events.append(1)
+                else:
+                    num_events.append(0)
 
     for index, hour in enumerate(hours_list):
-        print(f"Hours: {hour}\tName: {first_names_hours[index]} {last_names_hours[index]}")
+        if qualified[index] == "Qualified":
+            print(f"Forms: Yes\tEvents: {num_events[index]}\tHours: {hour}\tName: {first_names_events[index]} {last_names_events[index]}")
+        else:
+            print(f"Forms: No\tEvents: {num_events[index]}\tHours: {hour}\tName: {first_names_events[index]} {last_names_events[index]}")
 
 
-set_hours(first_names_hours, last_names_hours)
+# hours_list = get_hours(first_names_events, last_names_events, hours_list)
+# pickle_out = open('Event Selection Files/selecting_events_hours_list.pickle', 'wb')
+# pickle.dump(hours_list, pickle_out)
+# pickle_out.close()
+
+# Make sure pickled data is up to date
+pickle_in = open('Event Selection Files/selecting_events_hours_list.pickle', 'rb')
+hours_list = pickle.load(pickle_in)
+
+# Converting strings in list to floats
+hours_list = list(map(float, hours_list))
+
+get_least_active()
+# set_hours(first_names_events, last_names_events)
 
 # def meeting_requirement
 
