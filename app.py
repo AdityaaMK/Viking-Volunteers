@@ -112,27 +112,61 @@ def set_hours(first_names, last_names):
                 hours_gained = input(f'Input the number of new hours for {name}: ')
                 total_hours = float(current_hours_list[index]) + float(hours_gained)
                 print('New Total:', total_hours)
-                sheet.update_cell(cell.row, 32, total_hours)
+                sheet.update_cell(cell.row, 30, total_hours)
 
 
 def get_hours(first_names, last_names):
     for index, name in enumerate(first_names):
         for list in list_of_lists:
             if name == list[1] and last_names[index] == list[0]:
-                if list[31] == ' ':
-                    hours_list.append(list[31])
-                else:
+                if list[29] == ' ':
                     hours_list.append(0)
+                else:
+                    hours_list.append(list[29])
     return hours_list
 
 
-# print(get_hours(first_names_hours, last_names_hours))
-# set_hours(first_names_hours, last_names_hours)
+# get_hours(first_names_hours, last_names_hours)
+# pickle_out = open('Updating Hours Files/selecting_events_hours_list.pickle', 'wb')
+# pickle.dump(hours_list, pickle_out)
+# pickle_out.close()
+
+pickle_in = open('Updating Hours Files/selecting_events_hours_list.pickle', 'rb')
+hours_list = pickle.load(pickle_in)
+hours_list = list(map(float, hours_list))
 
 
-# def get_least_active
-''' Have to check number of hours, 0 1 or 2 events, 
-'''
+def insertion_sort(arr, first_names, last_names):
+    # Traverse through 1 to len(arr)
+    for i in range(1, len(arr)):
+
+        key = arr[i]
+        key2 = first_names_hours[i]
+        key3 = last_names_hours[i]
+
+        # Move elements of arr[0..i-1], that are
+        # greater than key, to one position ahead
+        # of their current position
+        j = i - 1
+        while j >= 0 and key < arr[j]:
+            arr[j + 1] = arr[j]
+            first_names_hours[j + 1] = first_names_hours[j]
+            last_names_hours[j + 1] = last_names_hours[j]
+            j -= 1
+        arr[j + 1] = key
+        first_names_hours[j + 1] = key2
+        last_names_hours[j + 1] = key3
+
+
+def get_least_active():
+    # TODO Have to check number of hours, 0 1 or 2 events,
+    insertion_sort(hours_list, first_names_hours, last_names_hours)
+
+    for index, hour in enumerate(hours_list):
+        print(f"Hours: {hour}\tName: {first_names_hours[index]} {last_names_hours[index]}")
+
+
+set_hours(first_names_hours, last_names_hours)
 
 # def meeting_requirement
 

@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="554f1ccd-bd84-4566-9ac1-54c9d0af1d9b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Viking-Volunteers.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Updating Hours Files/updating_hours_first_and_last_names.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Updating Hours Files/updating_hours_firstname.pickle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Updating Hours Files/updating_hours_lastname.pickle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/all_id_numbers.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/attendance_first_and_last_names.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/attendance_id_numbers.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/id.pickle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Updating Hours Files/selecting_events_fullnames.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Updating Hours Files/selecting_events_hours_list.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,20 +18,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="70" selection-start-line="70" selection-end-line="70" />
+            <state relative-caret-position="-1900">
+              <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Updating Hours Files/updating_hours_first_and_last_names.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4830">
-              <caret line="322" column="9" lean-forward="true" selection-start-line="322" selection-start-column="9" selection-end-line="322" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -55,12 +37,13 @@
       <list>
         <option value="$PROJECT_DIR$/attendance.csv" />
         <option value="$PROJECT_DIR$/fullname.pickle" />
+        <option value="$PROJECT_DIR$/Updating Hours Files/updating_hours_first_and_last_names.csv" />
         <option value="$PROJECT_DIR$/app.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1440" />
+    <option name="width" value="714" />
     <option name="height" value="900" />
   </component>
   <component name="ProjectView">
@@ -74,6 +57,11 @@
             <path>
               <item name="Viking-Volunteers" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="~/Desktop/Viking-Volunteers" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="Viking-Volunteers" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="~/Desktop/Viking-Volunteers" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="Updating Hours Files" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -95,17 +83,19 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Updating Hours Files" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Updating Hours Files" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Updating Hours Files" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Attendance Files" />
+      <recent name="$PROJECT_DIR$/Updating Hours Files" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -179,7 +169,11 @@
       <workItem from="1591994926356" duration="22000" />
       <workItem from="1591995190380" duration="4081000" />
       <workItem from="1592002429669" duration="120000" />
-      <workItem from="1592004736893" duration="4655000" />
+      <workItem from="1592004736893" duration="4897000" />
+      <workItem from="1592017181404" duration="34000" />
+      <workItem from="1592051030077" duration="2028000" />
+      <workItem from="1592054925836" duration="420000" />
+      <workItem from="1592152944016" duration="816000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1591995520789</created>
@@ -195,11 +189,18 @@
       <option name="project" value="LOCAL" />
       <updated>1592001368927</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Big improvements">
+      <created>1592017164019</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1592017164019</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8878000" />
+    <option name="totallyTimeSpent" value="12418000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -214,7 +215,7 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26037195" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2746781" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -228,8 +229,8 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.24939759" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32891566" />
-      <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.35903615" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32891566" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -243,38 +244,24 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
     <MESSAGE value="basic setup/idea completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="basic setup/idea completed" />
+    <MESSAGE value="Big improvements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Big improvements" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/creds.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/attendance_id_numbers.csv">
+    <entry file="file://$PROJECT_DIR$/Attendance Files/attendance_id_numbers.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="19" selection-start-column="19" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/attendance_first_and_last_names.csv">
+    <entry file="file://$PROJECT_DIR$/Attendance Files/attendance_first_and_last_names.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Updating Hours Files/updating_hours_first_and_last_names.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4830">
-          <caret line="322" column="9" lean-forward="true" selection-start-line="322" selection-start-column="9" selection-end-line="322" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fullname.pickle">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Updating Hours Files/updating_hours_firstname.pickle">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Updating Hours Files/updating_hours_lastname.pickle">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/fullname.pickle" />
     <entry file="file://$PROJECT_DIR$/all_id_numbers.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -282,13 +269,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/id.pickle">
+    <entry file="file://$PROJECT_DIR$/Attendance Files/id.pickle">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Updating Hours Files/updating_hours_lastname.pickle">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Updating Hours Files/updating_hours_firstname.pickle">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Updating Hours Files/updating_hours_first_and_last_names.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="298" column="13" lean-forward="true" selection-start-line="298" selection-start-column="13" selection-end-line="298" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Updating Hours Files/selecting_events_hours_list.pickle">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Updating Hours Files/selecting_events_fullnames.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="70" selection-start-line="70" selection-end-line="70" />
+        <state relative-caret-position="-1900">
+          <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
