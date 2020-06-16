@@ -97,6 +97,7 @@ def update_attendance(id_nums):
         for index2, row in enumerate(list_of_lists):
             if tag == row[2]:
                 sheet.update_cell(index2+1, 12, "Y")  # Modify 12 to other column numbers as necessary for attendance
+                time.sleep(5)
 
 # Second way to update attendance if necessary
 # def update_attendance2(first_names, last_names):
