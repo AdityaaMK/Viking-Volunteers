@@ -38,6 +38,18 @@ function getHoursForEvent(day, data, IDs, multiplier) {
   return returnList;
 }
 
+function getHoursForVariableEvent(IDs, eventData){
+  let IDList = [];
+  let returnList = Array.from(Array(IDs.length), () => 0);
+  for(var i = 0; i < IDs.length; i++) {
+    IDList.push(IDs[i][0]);
+  }
+    for(var i = 0; i < eventData.length; i++) {
+      returnList[IDList.indexOf(eventData[i][0])] = eventData[i][1];
+  }
+  return returnList;
+}
+
 function totalHours(data) {
   let returnList = [];
   for(var i = 0; i < data.length; i++) {
@@ -112,9 +124,31 @@ function returnMembers(data) {
   for(var i = 0; i < data.length; i++) { 
     const v_hours = getEventHours(data[i][12]);
     const v_events = data[i][12].split(":")[1].match(/\d+/g)[0];
-    if(!(data[i][7].indexOf("Y") >= 0 && data[i][8].indexOf("Y") >= 0 && v_hours >= 2 && v_events >= 0)) {
+    if(!(data[i][7].indexOf("Y") >= 0 && data[i][8].indexOf("Y") >= 0 && v_hours >= 10 && v_events >= 0)) {
       members.push([data[i][0], data[i][1], data[i][2], data[i][7], data[i][8], v_hours, v_events]);
     }
   }
   return members;
+}
+
+function getIDs(idData, nameData){
+  //let IDs = [];
+  let eventNames = [];
+  for(var x=0; x<nameData.length; x++){
+    eventNames.push(nameData[x][0].toLowerCase());
+  }
+  let IDs = Array.from(Array(eventNames.length), () => "MISSING");
+  /*for(var x=0; x<eventNames.length;x++){
+    for(var y=0; y<idData.length; y++){
+      var fullName = idData[y][2].concat(" "+idData[y][1]);
+      if(eventNames[x].toLowerCase().localeCompare(fullName.toLowerCase())==0)
+        IDs.push(idData[y][0]);
+    }
+  }*/
+  for(var y=0; y<idData.length; y++){
+      var fullName = idData[y][2].concat(" "+idData[y][1]);
+      if(eventNames.indexOf(fullName.toLowerCase())>=0)
+        IDs[eventNames.indexOf(fullName.toLowerCase())] = idData[y][0];
+    }
+  return IDs;
 }
