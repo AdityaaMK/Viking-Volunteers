@@ -63,7 +63,7 @@ function totalHours(data) {
         }
       }
     }
-    returnList.push(hours + "H : " + parseInt(events) + "E");
+    returnList.push(Math.round((hours+Number.EPSILON)*100)/100 + "H : " + parseInt(events) + "E");
   }
   return returnList;
 }
